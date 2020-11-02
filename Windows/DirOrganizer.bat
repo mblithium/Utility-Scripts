@@ -3,6 +3,7 @@ mode 80, 35
 REM DEFININDO CODIFICACAO DE CARACTERES PARA UTF8
 REM (Estranho que funciona perfeitamente no wine, mas no windows n„o)
 REM Testado no WINDOWS 7
+REM Digitado no KDE Kate :)
 chcp 65001
 
 REM DEFININDO UM TITULO PARA A JANELA
@@ -70,7 +71,7 @@ echo =====================================================================
 echo.
 echo Seu usuario: %USERPROFILE%
 echo.
-REM echo Aperte ENTER ou qualquer tecla "n√£o reservada" para continuar...
+REM echo Aperte ENTER ou qualquer tecla "nao reservada" para continuar...
 pause
 cls
 
@@ -88,6 +89,9 @@ echo    Biblioteca (PARA LIVROS E DOCUMENTOS)
 echo Games
 echo    PC (PARA JOGOS DE COMPUTADOR)
 echo    Emuladores (PARA EMULADORES E ROMS)
+echo        EMU... (EMULADORES DIVERSOS COM DUAS PASTAS PRINCIPAIS)
+echo            EMULADORES (PARA OS EMULADORES)
+echo            ROMS (PARA AS ROMS)
 echo Downloads
 echo    Instaladores (PARA ORGANIZAR INSTALADORES DE PROGRAMAS)
 echo    Imagens (IMAGENS QUE FORAM BAIXADAS E AINDA NAO ORGANIZADAS)
