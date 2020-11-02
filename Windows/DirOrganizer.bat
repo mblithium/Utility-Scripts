@@ -1,6 +1,7 @@
 @echo off
 mode 80, 35
 REM DEFININDO CODIFICACAO DE CARACTERES PARA UTF8
+REM (Estranho que funciona perfeitamente no wine, mas no windows n„o)
 chcp 65001
 
 REM DEFININDO UM TITULO PARA A JANELA
@@ -9,7 +10,7 @@ title Doc Organizer - By MB_Lithium
 REM DEFINICOES
 COLOR 02
 set smode=Assistido
-REM Assistido -> Com confirmaÁ?es e explicaÁ?es. / Auto -> Sem confirmaÁ?es nem explicaÁ?es.
+REM Assistido - Com confirmaÁ?es e explicaÁ?es. / Auto - Sem confirmaÁ?es nem explicaÁoes.
 
 REM SCRIPT CRIADO PARA ORGANIZAR PASTAS NO WINDOWS. ELE CRIA DIRETORIOS CATEGORIZADOS PARA CADA TIPO DE ARQUIVO.
 REM ============================================================================================================
@@ -53,7 +54,7 @@ goto MAIN
 :MAIN
 echo =====================================================================
 echo #
-echo # (O o O)/ Ola, eu irei criar uma organizacao de pastas em seu usuario
+echo # Ola, eu irei criar uma organizacao de pastas em seu usuario
 echo # do Windows. Isso sera bem util depois de uma formatacao, quando esta 
 echo # tudo vazio. Mas claro, se nao for o caso, ele ainda funciona mas
 echo # voce tera um trabalho para separar seus arquivos.
@@ -167,7 +168,7 @@ REM move "√Årea de Trabalho\*.lnk "AÅrea de Trabalho\Links_de_Atalho"
 echo.
 
 echo ====================================================================
-echo (* _ *) (b Prontinho, pastas criadas! Terminei por aqui. Voce pode
+echo Prontinho, pastas criadas! Terminei por aqui. Voce pode
 echo apertar qualquer tecla para sair ou apenas fechar a janela.
 echo ====================================================================
 REM echo Tambem criei um local para guardar toda a desorganizacao da √Årea de 
