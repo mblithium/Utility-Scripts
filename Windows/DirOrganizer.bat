@@ -2,6 +2,7 @@
 mode 80, 35
 REM DEFININDO CODIFICACAO DE CARACTERES PARA UTF8
 REM (Estranho que funciona perfeitamente no wine, mas no windows n„o)
+REM Testado no WINDOWS 7
 chcp 65001
 
 REM DEFININDO UM TITULO PARA A JANELA
@@ -10,7 +11,7 @@ title Doc Organizer - By MB_Lithium
 REM DEFINICOES
 COLOR 02
 set smode=Assistido
-REM Assistido - Com confirmaÁ?es e explicaÁ?es. / Auto - Sem confirmaÁ?es nem explicaÁoes.
+REM Assistido - Com confirmaÁoes e explicaÁoes. / Auto - Sem confirmaÁoes nem explicaÁoes.
 
 REM SCRIPT CRIADO PARA ORGANIZAR PASTAS NO WINDOWS. ELE CRIA DIRETORIOS CATEGORIZADOS PARA CADA TIPO DE ARQUIVO.
 REM ============================================================================================================
@@ -28,7 +29,7 @@ IF EXIST "%USERPROFILE%\Desktop" (
 )
 )
 
-REM SETANDO VARI√ÅVEL PARA CONTROLE
+REM SETANDO VARIAÅVEL PARA CONTROLE
 set localControl=PlaceHolder
 goto %localControl%
 goto PlaceHolder
@@ -150,18 +151,44 @@ md %USERPROFILE%\Games
 md %USERPROFILE%\Games\PC
 md %USERPROFILE%\Games\Emuladores
 md %USERPROFILE%\Games\Emuladores\PSX
+md %USERPROFILE%\Games\Emuladores\PSX\EMULADORES
+md %USERPROFILE%\Games\Emuladores\PSX\ROMS
 md %USERPROFILE%\Games\Emuladores\PS2
+md %USERPROFILE%\Games\Emuladores\PS2\EMULADORES
+md %USERPROFILE%\Games\Emuladores\PS2\ROMS
 md %USERPROFILE%\Games\Emuladores\PS3
+md %USERPROFILE%\Games\Emuladores\PS3\EMULADORES
+md %USERPROFILE%\Games\Emuladores\PS3\ROMS
 md %USERPROFILE%\Games\Emuladores\GBA
+md %USERPROFILE%\Games\Emuladores\GBA\EMULADORES
+md %USERPROFILE%\Games\Emuladores\GBA\ROMS
 md %USERPROFILE%\Games\Emuladores\GB
+md %USERPROFILE%\Games\Emuladores\GB\EMULADORES
+md %USERPROFILE%\Games\Emuladores\GB\ROMS
 md %USERPROFILE%\Games\Emuladores\DC
+md %USERPROFILE%\Games\Emuladores\DC\EMULADORES
+md %USERPROFILE%\Games\Emuladores\DC\ROMS
 md %USERPROFILE%\Games\Emuladores\Wii
+md %USERPROFILE%\Games\Emuladores\Wii\EMULADORES
+md %USERPROFILE%\Games\Emuladores\Wii\ROMS
 md %USERPROFILE%\Games\Emuladores\NDS
+md %USERPROFILE%\Games\Emuladores\NDS\EMULADORES
+md %USERPROFILE%\Games\Emuladores\NDS\ROMS
 md %USERPROFILE%\Games\Emuladores\3DS
+md %USERPROFILE%\Games\Emuladores\3DS\EMULADORES
+md %USERPROFILE%\Games\Emuladores\3DS\ROMS
 md %USERPROFILE%\Games\Emuladores\NES
+md %USERPROFILE%\Games\Emuladores\NES\EMULADORES
+md %USERPROFILE%\Games\Emuladores\NES\ROMS
 md %USERPROFILE%\Games\Emuladores\SNES
+md %USERPROFILE%\Games\Emuladores\SNES\EMULADORES
+md %USERPROFILE%\Games\Emuladores\SNES\ROMS
 md %USERPROFILE%\Games\Emuladores\MD
+md %USERPROFILE%\Games\Emuladores\MD\EMULADORES
+md %USERPROFILE%\Games\Emuladores\MD\ROMS
 md %USERPROFILE%\Games\Emuladores\NEOGEO
+md %USERPROFILE%\Games\Emuladores\NEOGEO\EMULADORES
+md %USERPROFILE%\Games\Emuladores\NEOGEO\ROMS
 cls
 REM echo Movendo atalhos da √°rea de trabalho para uma pasta.
 REM move "√Årea de Trabalho\*.lnk "AÅrea de Trabalho\Links_de_Atalho"
@@ -171,8 +198,8 @@ echo ====================================================================
 echo Prontinho, pastas criadas! Terminei por aqui. Voce pode
 echo apertar qualquer tecla para sair ou apenas fechar a janela.
 echo ====================================================================
-REM echo Tambem criei um local para guardar toda a desorganizacao da √Årea de 
-REM echo Trabalho. Fica na pasta Usu√°rio\Documentos\Desktop_Backup 
+REM echo Tambem criei um local para guardar toda a desorganizacao da AÅrea de 
+REM echo Trabalho. Fica na pasta Usuarios\Documentos\Desktop_Backup 
 REM echo Voce ja pode fechar esse assistente sem problemas. 
 echo.
 pause
