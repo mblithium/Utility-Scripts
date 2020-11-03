@@ -1,7 +1,7 @@
 @echo off
 mode 80, 35
 REM DEFININDO CODIFICACAO DE CARACTERES PARA UTF8
-REM (Estranho que funciona perfeitamente no wine, mas no windows n„o)
+REM (Estranho que funciona perfeitamente no wine, mas no windows n?o)
 REM Testado no WINDOWS 7
 REM Digitado no KDE Kate :)
 chcp 65001
@@ -18,6 +18,7 @@ REM SCRIPT CRIADO PARA ORGANIZAR PASTAS NO WINDOWS. ELE CRIA DIRETORIOS CATEGORI
 REM ============================================================================================================
 REM VER. 0.0.1
 REM ===========
+
 IF EXIST "%USERPROFILE%\¡Årea de Trabalho" (
  set desktop=¡Årea de Trabalho
 ) ELSE (
@@ -123,7 +124,12 @@ echo.
 echo ...
 REM DIRETORIO DE BACKUP DA AREA DE TRABALHO
 md %USERPROFILE%\Documentos\Desktop_Backup
-md "%desktop%\Links_de_Atalho"
+set backupdir="%USERPROFILE%\Documentos\Desktop_Backup"
+md "%USERPROFILE%\%desktop%\Links_de_Atalho"
+md %backupdir%\Musicas
+md %backupdir%\Videos
+md %backupdir%\Imagens
+md %backupdir%\Documentos
 
 REM DIRETORIO DE DOCUMENTOS
 md %USERPROFILE%\Documentos
@@ -193,20 +199,59 @@ md %USERPROFILE%\Games\Emuladores\MD\ROMS
 md %USERPROFILE%\Games\Emuladores\NEOGEO
 md %USERPROFILE%\Games\Emuladores\NEOGEO\EMULADORES
 md %USERPROFILE%\Games\Emuladores\NEOGEO\ROMS
-cls
-REM echo Movendo atalhos da √°rea de trabalho para uma pasta.
-REM move "√Årea de Trabalho\*.lnk "AÅrea de Trabalho\Links_de_Atalho"
-echo.
+md %USERPROFILE%\Games\Emuladores\NEOGEOPOCKET
+md %USERPROFILE%\Games\Emuladores\NEOGEOPOCKET\EMULADORES
+md %USERPROFILE%\Games\Emuladores\NEOGEOPOCKET\ROMS
 
+cls
+REM Movendo Area de Trabalho para um backup organizado.
+move /Y "%USERPROFILE%\%desktop%\*.lnk" "%USERPROFILE%\%desktop%\Links_de_Atalho"
+
+move /Y "%USERPROFILE%\%desktop%\*.mp3" "%backupdir%\Musicas"
+move /Y "%USERPROFILE%\%desktop%\*.wav" "%backupdir%\Musicas"
+move /Y "%USERPROFILE%\%desktop%\*.ogg" "%backupdir%\Musicas"
+move /Y "%USERPROFILE%\%desktop%\*.aac" "%backupdir%\Musicas"
+
+move /Y "%USERPROFILE%\%desktop%\*.mp4" "%backupdir%\Videos"
+move /Y "%USERPROFILE%\%desktop%\*.wmv" "%backupdir%\Videos"
+move /Y "%USERPROFILE%\%desktop%\*.mov" "%backupdir%\Videos"
+move /Y "%USERPROFILE%\%desktop%\*.mkv" "%backupdir%\Videos"
+move /Y "%USERPROFILE%\%desktop%\*.mpeg" "%backupdir%\Videos"
+move /Y "%USERPROFILE%\%desktop%\*.avi" "%backupdir%\Videos"
+move /Y "%USERPROFILE%\%desktop%\*.3gp" "%backupdir%\Videos"
+
+move /Y "%USERPROFILE%\%desktop%\*.pdf" "%backupdir%\Documentos"
+move /Y "%USERPROFILE%\%desktop%\*.txt" "%backupdir%\Documentos"
+move /Y "%USERPROFILE%\%desktop%\*.xls*" "%backupdir%\Documentos"
+move /Y "%USERPROFILE%\%desktop%\*.ppt*" "%backupdir%\Documentos"
+move /Y "%USERPROFILE%\%desktop%\*.doc*" "%backupdir%\Documentos"
+
+move /Y "%USERPROFILE%\%desktop%\*.png" "%backupdir%\Imagens"
+move /Y "%USERPROFILE%\%desktop%\*.bmp" "%backupdir%\Imagens"
+move /Y "%USERPROFILE%\%desktop%\*.jpg" "%backupdir%\Imagens"
+move /Y "%USERPROFILE%\%desktop%\*.jpeg" "%backupdir%\Imagens"
+move /Y "%USERPROFILE%\%desktop%\*.gif" "%backupdir%\Imagens"
+
+move /Y "%USERPROFILE%\%desktop%\*" "%backupdir%"
+echo.
+cls
 echo ====================================================================
 echo Prontinho, pastas criadas! Terminei por aqui. Voce pode
 echo apertar qualquer tecla para sair ou apenas fechar a janela.
 echo ====================================================================
-REM echo Tambem criei um local para guardar toda a desorganizacao da AÅrea de 
-REM echo Trabalho. Fica na pasta Usuarios\Documentos\Desktop_Backup 
-REM echo Voce ja pode fechar esse assistente sem problemas. 
+echo Tambem criei um local para guardar toda a desorganizacao da AÅrea de 
+echo Trabalho. Fica na pasta Usuarios\Documentos\Desktop_Backup 
+echo Ele tenta separar tipos de arquivos, mas nao e perfeito.
 echo.
+echo Voce ja pode fechar esse assistente sem problemas. 
+echo.
+explorer %backupdir%
 pause
+goto EXIT
+
+REM FEATURES
+:DownloadOrganizer
+REM Ira organizar a pasta de dowloads separando por tipos de arquivos.
 goto EXIT
 
 :EXIT
