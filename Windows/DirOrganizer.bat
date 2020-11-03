@@ -62,7 +62,11 @@ echo # do Windows. Isso sera bem util depois de uma formatacao, quando esta
 echo # tudo vazio. Mas claro, se nao for o caso, ele ainda funciona mas
 echo # voce tera um trabalho para separar seus arquivos.
 echo #
-REM echo # Tambem irei colocar seus atalhos da AÅrea de Trabalho em uma Unica pasta para voce conseguir organizar melhor depois.
+echo # Tambem irei colocar seus atalhos da AÅrea de Trabalho em uma Unica 
+echo # pasta para voce conseguir organizar melhor depois. Alem de organizar seus 
+echo # arquivos que estavam no Desktop para uma pasta nomeada de Desktop_Backup
+echo # na pasta Documentos do Windows.
+echo #
 echo # Futuramente tera um menu para conseguir separar varios arquivos de 
 echo # diferentes formatos para as pastas especificadas.
 echo # Obs: Nao se preocupe, o script apenas cria pastas que nao existam. 
@@ -240,7 +244,7 @@ echo Prontinho, pastas criadas! Terminei por aqui. Voce pode
 echo apertar qualquer tecla para sair ou apenas fechar a janela.
 echo ====================================================================
 echo Tambem criei um local para guardar toda a desorganizacao da AÅrea de 
-echo Trabalho. Fica na pasta Usuarios\Documentos\Desktop_Backup 
+echo Trabalho. Fica na pasta Usuario\Documentos\Desktop_Backup 
 echo Ele tenta separar tipos de arquivos, mas nao e perfeito.
 echo.
 echo Voce ja pode fechar esse assistente sem problemas. 
