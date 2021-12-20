@@ -8,7 +8,7 @@ echo $AODEFAULTDIR
 cd $AODEFAULTDIR
 
 function createDirs {
-    creatDir=('Images' 'Videos' 'Musics' 'Packages' 'Documents' 'Compressed' 'DiskImages' 'Others')
+    createDir=('Images' 'Videos' 'Musics' 'Packages' 'Documents' 'Compressed' 'DiskImages' 'Others')
     for i in ${createDir[@]}; do
         mkdir $i
     done
@@ -16,63 +16,74 @@ function createDirs {
 }
 
 function Organizer {
+    function verCreate() {
+        for i in ${movexts[@]}; do
+            while true; do
+                # Checa se existe o diretório para a extensão. Caso não exista, irá criar.
+                local targetDir="$AODEFAULTDIR${createDir[$1]}/$i"
+                if [ -d "$AODEFAULTDIR/${createDir[$1]}/$i" ]; then
+                    mv *.$i $targetDir
+                    echo "$targetDir"
+                    echo "Pasta criada, arquivos copiados."
+                    break
+                else
+                    mkdir $targetDir
+                    echo "criando diretório..."
+                fi
+            done
+        done
+    }
+
+    : '
+        movexts: Coloque as extensões dos arquivos dentro desta lista;
+        dirOrder: Selecione a ordem do contexto atual, do tipo de arquivo aqui. A ordem é a lista, que começa com 0 (elemento 1) em ordem crescente;
+        verCreate: Executa a função com o contexto atual.
+    '
+
+    # CRIE OS GRUPOS ABAIXO:
+
     # Linux Packages
-    movexts=('deb' 'appimage' 'flatpakref')
-    # Coloque as extensões neste array de cima.
-    for i in ${movexts[@]}; do
-        mv *.$i $AODEFAULTDIR/Packages
-    done
+    
+    movexts=('deb' 'AppImage' 'flatpakref')
+    dirOrder=3
+    verCreate $dirOrder 
 
     # Images
-    movexts=('png' 'gif' 'mv' 'jpeg' 'jpg', 'webp')
-    # Coloque as extensões neste array de cima.
-    for i in ${movexts[@]}; do
-        mv *.$i $AODEFAULTDIR/Images
-    done
+    movexts=('png' 'gif' 'jpeg' 'jpg' 'webp' 'exif')
+    dirOrder=0
+    verCreate $dirOrder
 
     # Videos
     movexts=('mp4' 'm4v' '3gp' 'mov')
-    # Coloque as extensões neste array de cima.
-    for i in ${movexts[@]}; do
-        mv *.$i $AODEFAULTDIR/Videos
-    done
+    dirOrder=1
+    verCreate $dirOrder
 
     # Musics
     movexts=('mp3' 'wav' 'm4a' 'ogg' 'webm')
-    # Coloque as extensões neste array de cima.
-    for i in ${movexts[@]}; do
-        mv *.$i $AODEFAULTDIR/Musics
-    done
+    dirOrder=2
+    verCreate $dirOrder
 
     # Documents
     movexts=('pdf' 'ods' 'doc' 'docx' 'txt')
-    # Coloque as extensões neste array de cima.
-    for i in ${movexts[@]}; do
-        mv *.$i $AODEFAULTDIR/Documents
-    done
+    dirOrder=4
+    verCreate $dirOrder
 
     # Compressed files
     movexts=('zip' '7z' 'rar' 'tar.gz' 'tar.xz' 'tar.gz')
-    # Coloque as extensões neste array de cima.
-    for i in ${movexts[@]}; do
-        mv *.$i $AODEFAULTDIR/Compressed
-    done
+    dirOrder=5
+    verCreate $dirOrder
 
     # DiskImages
     movexts=('iso' 'img')
-    # Coloque as extensões neste array de cima.
-    for i in ${movexts[@]}; do
-        mv *.$i $AODEFAULTDIR/DiskImages
-    done
+    dirOrder=6
+    verCreate $dirOrder
 
     # Others
     movexts=('exe' 'msi' 'torrent')
-    # Coloque as extensões neste array de cima.
-    for i in ${movexts[@]}; do
-        mv *.$i $AODEFAULTDIR/Others
-    done
+    dirOrder=7
+    verCreate $dirOrder
 
-    clear
+    # clear
     echo "Tudo Pronto!"
 }
 
