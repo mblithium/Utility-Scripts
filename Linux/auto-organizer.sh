@@ -2,34 +2,84 @@
 # Script Bash para organizar o diretório de Downloads.
 # MB_Lithium
 
+# Diretório onde o script irá executar
 AODEFAULTDIR=$HOME/Downloads/
 echo $AODEFAULTDIR
 cd $AODEFAULTDIR
-# ls
 
 function createDirs {
-    mkdir Images | mkdir Videos | mkdir Musics | mkdir Packages | mkdir Documents | mkdir Compressed | mkdir DiskImages | mkdir Others
+    creatDir=('Images' 'Videos' 'Musics' 'Packages' 'Documents' 'Compressed' 'DiskImages' 'Others')
+    for i in ${createDir[@]}; do
+        mkdir $i
+    done
     echo Pastas criadas.
 }
 
 function Organizer {
     # Linux Packages
-    mv *.deb $AODEFAULTDIR/Packages
+    movexts=('deb' 'appimage' 'flatpakref')
+    # Coloque as extensões neste array de cima.
+    for i in ${movexts[@]}; do
+        mv *.$i $AODEFAULTDIR/Packages
+    done
+
     # Images
-    mv *.png $AODEFAULTDIR/Images | mv *.gif $AODEFAULTDIR/Images | mv *.jpg $AODEFAULTDIR/Images | mv *.jpeg $AODEFAULTDIR/Images
+    movexts=('png' 'gif' 'mv' 'jpeg' 'jpg', 'webp')
+    # Coloque as extensões neste array de cima.
+    for i in ${movexts[@]}; do
+        mv *.$i $AODEFAULTDIR/Images
+    done
+
     # Videos
-    mv *.mp4 $AODEFAULTDIR/Videos
+    movexts=('mp4' 'm4v' '3gp' 'mov')
+    # Coloque as extensões neste array de cima.
+    for i in ${movexts[@]}; do
+        mv *.$i $AODEFAULTDIR/Videos
+    done
+
     # Musics
-    mv *mp3 $AODEFAULTDIR/Musics
+    movexts=('mp3' 'wav' 'm4a' 'ogg' 'webm')
+    # Coloque as extensões neste array de cima.
+    for i in ${movexts[@]}; do
+        mv *.$i $AODEFAULTDIR/Musics
+    done
+
     # Documents
-    mv *.pdf $AODEFAULTDIR/Documents | mv *.ods $AODEFAULTDIR/Documents
+    movexts=('pdf' 'ods' 'doc' 'docx' 'txt')
+    # Coloque as extensões neste array de cima.
+    for i in ${movexts[@]}; do
+        mv *.$i $AODEFAULTDIR/Documents
+    done
+
     # Compressed files
-    mv *.zip $AODEFAULTDIR/Compressed | mv *.7z $AODEFAULTDIR/Compressed | mv *.rar $AODEFAULTDIR/Compressed | mv *.tar.gz $AODEFAULTDIR/Compressed | mv *.tar.xz $AODEFAULTDIR/Compressed
+    movexts=('zip' '7z' 'rar' 'tar.gz' 'tar.xz' 'tar.gz')
+    # Coloque as extensões neste array de cima.
+    for i in ${movexts[@]}; do
+        mv *.$i $AODEFAULTDIR/Compressed
+    done
+
     # DiskImages
-    mv *.iso $AODEFAULTDIR/DiskImages
+    movexts=('iso' 'img')
+    # Coloque as extensões neste array de cima.
+    for i in ${movexts[@]}; do
+        mv *.$i $AODEFAULTDIR/DiskImages
+    done
+
     # Others
-    mv *.exe $AODEFAULTDIR/Others | mv *.msi $AODEFAULTDIR/Others
+    movexts=('exe' 'msi' 'torrent')
+    # Coloque as extensões neste array de cima.
+    for i in ${movexts[@]}; do
+        mv *.$i $AODEFAULTDIR/Others
+    done
+
+    clear
+    echo "Tudo Pronto!"
 }
 
-# createDirs
-# Organizer
+# Executa as funções
+
+# Cria os Diretórios necessários para cada tipo de arquivo.
+createDirs
+
+# Organizar por extensão os arquivos nas pastas que foram criadas.
+Organizer
