@@ -1,6 +1,7 @@
 #!/bin/bash
 # Script Bash para organizar o diretório de Downloads.
 # MB_Lithium
+clear
 
 # Diretório onde o script irá executar
 AODEFAULTDIR=$HOME/Downloads/
@@ -8,29 +9,32 @@ echo $AODEFAULTDIR
 cd $AODEFAULTDIR
 
 function createDirs {
-    createDir=('Images' 'Videos' 'Musics' 'Packages' 'Documents' 'Compressed' 'DiskImages' 'Others')
+    createDir=('Images' 'Videos' 'Musics' 'Packages' 'Documents' 'Compressed' 'DiskImages' 'Others' 'Testando')
     for i in ${createDir[@]}; do
-        mkdir $i
+        if [[ ! -d "$AODEFAULTDIR/$i" ]]; then
+            mkdir $i
+        fi
     done
     echo Pastas criadas.
 }
 
 function Organizer {
     function verCreate() {
+        order="$1"
         for i in ${movexts[@]}; do
-            while true; do
-                # Checa se existe o diretório para a extensão. Caso não exista, irá criar.
-                local targetDir="$AODEFAULTDIR${createDir[$1]}/$i"
-                if [ -d "$AODEFAULTDIR/${createDir[$1]}/$i" ]; then
-                    mv *.$i $targetDir
-                    echo "$targetDir"
-                    echo "Pasta criada, arquivos copiados."
-                    break
-                else
-                    mkdir $targetDir
-                    echo "criando diretório..."
-                fi
-            done
+                while true; do
+                    # Checa se existe o diretório para a extensão. Caso não exista, irá criar.
+                    local targetDir="$AODEFAULTDIR${createDir[$order]}/$i"
+                    if [ -d "$AODEFAULTDIR/${createDir[$order]}/$i" ]; then
+                        mv *.$i "$targetDir"
+                        echo "$targetDir"
+                        echo "Pasta criada, arquivos copiados."
+                        break
+                    else
+                        mkdir "$targetDir"
+                        echo "criando diretório..."
+                    fi
+                done
         done
     }
 
@@ -83,7 +87,7 @@ function Organizer {
     dirOrder=7
     verCreate $dirOrder
 
-    # clear
+    clear
     echo "Tudo Pronto!"
 }
 
