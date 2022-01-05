@@ -15,7 +15,6 @@ function createDirs {
             mkdir $i
         fi
     done
-    echo Pastas criadas.
 }
 
 function Organizer {
@@ -28,7 +27,6 @@ function Organizer {
                     if [ -d "$AODEFAULTDIR/${createDir[$order]}/$i" ]; then
                         mv *.$i "$targetDir"
                         echo "$targetDir"
-                        echo "Pasta criada, arquivos copiados."
                         break
                     else
                         mkdir "$targetDir"
@@ -83,12 +81,16 @@ function Organizer {
     verCreate $dirOrder
 
     # Others
-    movexts=('exe' 'msi' 'torrent')
+    movexts=('exe' 'msi' 'torrent' 'm3u' 'bin' 'html')
     dirOrder=7
     verCreate $dirOrder
 
     clear
-    echo "Tudo Pronto!"
+}
+
+function toLogs() {
+    local timelog=`date +%d/%m/%Y" - "%H:%M:%S`
+    echo "[ $timelog ] - $1" >> "$AODEFAULTDIR/auto-organizer.log"
 }
 
 # Executa as funções
