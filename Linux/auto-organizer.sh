@@ -46,7 +46,7 @@ function Organizer {
 
     # Linux Packages
     
-    movexts=('deb' 'AppImage' 'flatpakref')
+    movexts=('deb' 'AppImage' 'flatpakref' 'pacman')
     dirOrder=3
     verCreate $dirOrder 
 
@@ -81,7 +81,7 @@ function Organizer {
     verCreate $dirOrder
 
     # Others
-    movexts=('exe' 'msi' 'torrent' 'm3u' 'bin' 'html')
+    movexts=('exe' 'msi' 'torrent' 'm3u' 'bin' 'html' 'xml')
     dirOrder=7
     verCreate $dirOrder
 
