@@ -51,7 +51,7 @@ function Organizer {
     verCreate $dirOrder 
 
     # Images
-    movexts=('png' 'gif' 'jpeg' 'jpg' 'webp' 'exif')
+    movexts=('png' 'gif' 'jpeg' 'jpg' 'webp' 'exif' 'svg')
     dirOrder=0
     verCreate $dirOrder
 
@@ -66,12 +66,12 @@ function Organizer {
     verCreate $dirOrder
 
     # Documents
-    movexts=('pdf' 'ods' 'doc' 'docx' 'txt')
+    movexts=('pdf' 'ods' 'doc' 'docx' 'txt' 'csv')
     dirOrder=4
     verCreate $dirOrder
 
     # Compressed files
-    movexts=('zip' '7z' 'rar' 'tar.gz' 'tar.xz' 'tar.gz')
+    movexts=('zip' '7z' 'rar' 'tar.gz' 'tar.xz' 'tar.gz' 'tar')
     dirOrder=5
     verCreate $dirOrder
 
@@ -81,7 +81,7 @@ function Organizer {
     verCreate $dirOrder
 
     # Others
-    movexts=('exe' 'msi' 'torrent' 'm3u' 'bin' 'html' 'xml')
+    movexts=('exe' 'msi' 'torrent' 'm3u' 'bin' 'html' 'xml' 'json')
     dirOrder=7
     verCreate $dirOrder
 
