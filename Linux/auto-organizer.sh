@@ -9,7 +9,7 @@ echo $AODEFAULTDIR
 cd $AODEFAULTDIR
 
 function createDirs {
-    createDir=('Images' 'Videos' 'Musics' 'Packages' 'Documents' 'Compressed' 'DiskImages' 'Others' 'Testando')
+    createDir=('Images' 'Videos' 'Musics' 'Packages' 'Documents' 'Compressed' 'DiskImages' 'Others')
     for i in ${createDir[@]}; do
         if [[ ! -d "$AODEFAULTDIR/$i" ]]; then
             mkdir $i
