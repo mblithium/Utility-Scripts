@@ -29,7 +29,6 @@ function UninstallPackages {
     # DESABILITAR CORTANA
     # Desabilitar o ícone da cortana
     Set-ItemProperty -Path "$WIN_HKCU\CurrentVersion\Explorer\Advanced" -Name "ShowCortanaButton" -Value 0
-
     # Desativar e desinstalar Cortana
     Set-ItemProperty -Path "$WIN_HKCU\CurrentVersion\Cortana" -Name "IsAvailable" -Value 0
     Get-AppxPackage -AllUsers Microsoft.549981C3F5F10 | Remove-AppPackage 
@@ -53,6 +52,25 @@ function SetSettings {
     sc.exe config wuauserv start= disabled # Ative novamente com "sc.exe config wuauserv start=auto".
 }
 
+function InstallScoop {
+    # Scoop é um gerenciador de pacotes/programas para Windows, que imita um pouco o método de instalação de aplicativos através do terminal no Linux. Com o Scoop, é possível instalar, desinstalar e até atualizar facilmente programas de Windows no terminal.
+    # Github do projeto: https://github.com/ScoopInstaller/Scoop#readme 
+    # Site: https://scoop.sh/
+    try {
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+        Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+    }
+    catch {
+        Write-Host "Ocorreu algum erro ao tentar instalar o Scoop no sistema."
+        Write-Host $_.ScriptStackTrace
+    }
+}
+
+function InstallPrograms {
+    scoop bucket add extras
+    scoop install extras/eclipse-java
+}
+
 function InitScript {
     SetEnergyOpctions
     SetPerformanceOptions
@@ -61,4 +79,4 @@ function InitScript {
     RestartWindowsExplorer
 }
 
-# InitScript
+InitScript
