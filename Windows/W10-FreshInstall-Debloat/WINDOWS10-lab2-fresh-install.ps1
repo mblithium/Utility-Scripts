@@ -1,7 +1,8 @@
 # Desenvolvido por: Matheus Bastos
 # 2024 - Licença MIT
 
-$WIN_HKCU = "HKCU:\Software\Microsoft\Windows\"
+$PSDefaultParameterValues['*:Encoding'] = 'utf8'
+$WIN_HKCU_SOFTWARE = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion"
 $LOG_FILE = "winPosInstLogs.txt"
 
 Get-Date | Out-File -FilePath ".\$LOG_FILE" -Encoding "utf8" -Append
@@ -21,16 +22,27 @@ function SetEnergyOpctions {
 function SetPerformanceOptions {
     # Desempenho - Desabilitar animações e recursos não usados
 
-    # Desabilita efeitos de animação no Menu do Windows.
-    Set-ItemProperty -Path "$WIN_HKCU\VisualEffects\MenuAnimation" -Name "DefaultApplied" -Value 0
+    # Desabilitar outros efeitos gráficos do Windows/Explorer
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\AnimateMinMax" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\ComboBoxAnimation" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\ControlAnimations" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\CursorShadow" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\DragFullWindows" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\DWMAeroPeekEnabled" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\DWMEnabled" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\AnimateMinMax" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\MenuAnimation" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\SelectionFade" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\TaskbarAnimations" -Name "DefaultApplied" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\VisualEffects\TooltipAnimation" -Name "DefaultApplied" -Value 0
 }
 
 function UninstallPackages {
     # DESABILITAR CORTANA
     # Desabilitar o ícone da cortana
-    Set-ItemProperty -Path "$WIN_HKCU\CurrentVersion\Explorer\Advanced" -Name "ShowCortanaButton" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Explorer\Advanced" -Name "ShowCortanaButton" -Value 0
     # Desativar e desinstalar Cortana
-    Set-ItemProperty -Path "$WIN_HKCU\CurrentVersion\Cortana" -Name "IsAvailable" -Value 0
+    Set-ItemProperty -Path "$WIN_HKCU_SOFTWARE\Cortana" -Name "IsAvailable" -Value 0
     Get-AppxPackage -AllUsers Microsoft.549981C3F5F10 | Remove-AppPackage 
 
     # Desinstalar app "Mixed Reality Portal"
