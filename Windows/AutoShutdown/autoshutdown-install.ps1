@@ -4,29 +4,45 @@
 # Script powershell para configurar desligamento automático das máquinas em um horário especificado.
 # As tarefas são agendadas no Agendador de Tarefas do Windows.
 
-[Console]::OutputEncoding = [Text.Encoding]::UTF8
-
-# Selecione aqui o horário para desligamento:
-$TIMETOSHUTDOWN="22:00 pm"
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
+$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
+$TIMETOSHUTDOWN=""
 
 function SetSchedule {
-    $Trigger = New-ScheduledTaskTrigger -Daily -At $TIMETOSHUTDOWN
+    param (
+        $TASKNAME,
+        $TIMETOSHUTDOWN,
+        $PERIOD
+    )
+
+    if (Get-ScheduledTask -TaskName $TASKNAME) {
+        Write-Host "A tarefa ja existe, será substituida pela atual."
+        Unregister-ScheduledTask -TaskName $TASKNAME -Confirm:$false
+    }
+
+    $Trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek $PERIOD -At $TIMETOSHUTDOWN
 
     $Action = New-ScheduledTaskAction -Execute "C:\Windows\System32\shutdown.exe" -Argument "/s /f /t 0"
 
     $Principal = New-ScheduledTaskPrincipal -UserId "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount
  
     try {
-        Register-ScheduledTask -TaskName "Autodesligar maquinas do laboratorio." -Trigger $Trigger -Action $Action -Principal $Principal
-        Write-Host "Tarefa registrada com sucesso para o horário: $TIMETOSHUTDOWN."
+        Register-ScheduledTask -TaskName $TASKNAME -Trigger $Trigger -Action $Action -Principal $Principal
     } catch {
-        Write-Host "Um erro ocorreu ao tentar registrar a tarefa."
+        Write-Warning "Um erro ocorreu ao tentar registrar a tarefa."
     }
-    
 }
 
 function init {
-    SetSchedule
+    $TASKNAME="Autodesligar máquinas lab inf seg - sex"
+    $TIMETOSHUTDOWN="22:00pm"
+    $PERIOD=@("Monday","Tuesday","Wednesday","Thursday","Friday")
+    SetSchedule $TASKNAME $TIMETOSHUTDOWN $PERIOD
+
+    $TASKNAME="Autodesligar máquinas lab inf sab"
+    $TIMETOSHUTDOWN="12:00pm"
+    $PERIOD=@("saturday")
+    SetSchedule $TASKNAME $TIMETOSHUTDOWN $PERIOD
 }
 
 init
