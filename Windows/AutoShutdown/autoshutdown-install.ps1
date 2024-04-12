@@ -6,7 +6,6 @@
 
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
 $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
-$TIMETOSHUTDOWN=""
 
 function SetSchedule {
     param (
