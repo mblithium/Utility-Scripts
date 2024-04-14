@@ -43,3 +43,11 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine -Force
 ```
 
 Basta selecionar a opção "A" para todos os scripts ou "Y" apenas para sessão atual do terminal do powershell.
+
+## Instalando remotamente
+
+Em vez de baixar o arquivo, é possível baixar e executar diretamente no powershell usando este comando:
+
+```powershell
+irm https://raw.githubusercontent.com/mblithium/Utility-Scripts/main/Windows/AutoShutdown/autoshutdown-install.ps1 | iex
+```
